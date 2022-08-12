@@ -30,17 +30,14 @@ button{
     cursor: pointer;
     transition-duration: 2s;
     transition-property: background-color;
-    transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in;
     font-size: 14px;
     width: 50%;
     height:30px;
 }
 button:hover{
-     border-radius: 25%;
-     background: blue;
-     color: #fff; 
-     
-	
+    border-radius: 25%;
+    color: #fff; 	
 }
 h1{
     font-size: 20px;
@@ -62,21 +59,17 @@ header,nav,section,article,hgroup,aside,footer{
 ul{
     list-style: none;
 }
-@media screen and (max-width: 480px) {
-    ul{
-        padding: 0.2rem;
-        margin: 0rem;
-        
-    }
-    ul li{
-        display: block;
-    }
-    .userlogin{
-        display: flex!important;
-        flex-direction: column!important;
-        background: red!important;
-    }
-		
+
+#error{
+    width: 500px;
+    min-height: 60px;
+    position: absolute;
+    top: 50px;
+    right:0px ;
+    bottom: 50px;
+    background: red;
+    z-index: 999;
+    
 }
     #wrapper{
     max-width:100vw;
@@ -138,18 +131,15 @@ ul{
     padding-right: 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border-right: 1px  #8a2167 solid;
+    border-right: 1px #3066b5 solid;
     font-size: 15px;
-    background-image: url(../images/icons/menu-hover-background.jpg);
     transition-property: background-color;
-    transition-duration: 3s;
+    transition-duration: 1.5s;
     transition-timing-function:ease-in-out;
     
 }
 #topMenu li:hover{
     cursor: pointer;
-    background: #610c45;
-    color: #5e8708;
 }
 #mainContent{
     background: #10f7f7;

@@ -13,7 +13,8 @@
     </head>
     <body>
         <section id="wrapper">
-    <header id="topHeader">
+       
+        <header id="topHeader">
         
         <section>
             <section class="userlogin"><a>
@@ -34,6 +35,6 @@
 	</section>
     </header>
 	<%@include file="../views/mainNavigation.jsp" %>
-	<div id="divMainContent">
 	    <section id="mainContent">
-	
+               
+                

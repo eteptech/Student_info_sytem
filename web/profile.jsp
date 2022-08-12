@@ -9,45 +9,49 @@
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.FileItemFactory"%>
 <%@include file="inc/header.jsp" %> 
+<% 
+    AccountController.protectedPage(true, users);   
+    String fileName="";
+%>
+<%
+    if(request.getMethod().equals("POST")){
+       try{
+       FileController fc = new FileController(c);
+        fc .saveCover(users);
+            out.println(users.getMessage());
+    }catch(Exception ex){
+        out.println(ex.getMessage());
+    }
+           
+    }
+%>
 
 <%
-  String fileName="";
+  
    try{
         ServletContext con=getServletContext();
         String username= AccountController.getLoggInUser(users); 
-        File coverimage= new File(con.getRealPath("images/coverPics/"+username+".jpg"));
+        File coverimage= new File(con.getRealPath("images\\coverPics\\"+username+".jpg"));
         if(coverimage.exists()){
-        
-            out.println("exist");
-            fileName="images/coverPics/"+username+".jpg";
+            //out.println("exist");
+            fileName="images\\coverPics\\"+username+".jpg";
         }else{
-        out.println("File does not exist how?");
+        
+        fileName="images\\3.jpg";
     }
    }catch(Exception e){
        //out.println("does not exist");
-       fileName="images/coverPics/admin.jpg";
+       
    }
    
 %>
-<%  
-    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-    response.setHeader("Pragma", "no-cache");
-    response.setHeader("Expires", "0");
-    AccountController.protectedPage(true, users);      
-%>
 
-<img src="<%=fileName%>" alt=""  width="100%" ><br/><br/>
-<%
-    if(request.getMethod().equals("POST")){
-        FileController fc = new FileController(c);
-            fc .saveCover(users);
-            out.println(users.getMessage());
-    }
-%>
+<img src="<%=fileName%>" alt=""  width="100%"  min-height="300px" ><br/><br/>
+
     <p>
     <form action="" method="POST" enctype="multipart/form-data">
-        <input type="file" name="coverpic" id="coverPIcs" multiple/>
-        <input type="file" name="profilepic" id="profilePics"/>
+        <input type="file" name="cover" id="coverpics" multiple/>
+        <input type="file" name="profilepics" id="profilepics" multiple/>
         <input type="submit" value="upload" id="upload"/>
     </form> 
     </p>

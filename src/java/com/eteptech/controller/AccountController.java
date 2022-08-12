@@ -23,14 +23,12 @@ public class AccountController  extends ServletEssentials{
     }
     public void saveUser(UserModel users, ConfigFile c) throws IOException{
         if(this.validateUSerName(users)){
-            if(this.isAvailability(users)){
-                if(this.save(users)){
-                    users.setMessage(users.getFullName() +" Registered successfully");
-                   
-                }
-            }else{
-                users.setMessage("ERROR: user name or email already exist.");
+            if(this.save(users)){
+                users.setMessage(users.getFullName() +" Registered successfully");
+                users.getResponse().sendRedirect("profile.jsp");   
             }
+        }else{
+           users.setMessage("ERROR: user name or email already exist."); 
         }
     }
     public boolean checkUsername(UserModel users){
@@ -39,13 +37,17 @@ public class AccountController  extends ServletEssentials{
             users.setStmt(this.con.createStatement());
             users.setRs(users.getStmt().executeQuery(users.getQuery()));
             if(users.getRs().next()){
+                users.setMessage("Username not available");
+                
+            }else{
+                users.setMessage("Username available");
                 return false;
             }
         }catch(SQLException e){
             users.setMessage(e.getMessage());
             return false;
         }
-        return true;
+        return false;
     }
     private boolean validateUSerName(UserModel users){
         if(!Validation.FNAMEex(users.getFname())){
@@ -86,18 +88,7 @@ public class AccountController  extends ServletEssentials{
         }*/
         return true;
     }
-    private boolean isAvailability(UserModel users){
-        users.setQuery("SELECT `stdid` FROM app.student WHERE `username`='"+users.getUname()+"' OR 'email_id'='"+users.getEmail()+"' OR 'phone_no'='"+users.getMobilenumber()+"'");
-        try{
-           users.setStmt(this.con.createStatement());
-           users.setRs(users.getStmt().executeQuery(users.getQuery()));
-           if(users.getRs().next()){
-               return false;
-           }return true;
-        }catch(SQLException e){
-            return false;
-        }
-    }
+  
     private boolean save(UserModel users){
         users.setQuery("INSERT INTO `app`.`student`\n" +
 " VALUES (NULL,'"+users.getFname()+"', "
@@ -122,20 +113,10 @@ public class AccountController  extends ServletEssentials{
         }
     }
     public String checkUsernameEmail(UserModel users){
-            users.setQuery("SELECT `stdid` FROM app.student WHERE `username`='"+users.getUname()+"'");
-            //System.out.println("username");
-        try{
-             users.setStmt(this.con.createStatement());
-             users.setRs(users.getStmt().executeQuery(users.getQuery()));
-             if(users.getRs().next()){
-                users.setMessage("Username not available");
-             }else{
-                 users.setMessage("Username available");
-             }
-        }catch(SQLException e){
-            users.setMessage(e.getMessage());
-        }
-        return "";
+          if(this.checkUsername(users)){
+              
+          }
+         return "";
     }
     public String checkEmail(UserModel users){
              users.setQuery("SELECT `stdid` FROM app.student WHERE `email_id`='"+users.getEmail()+"'");

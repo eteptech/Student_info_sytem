@@ -86,9 +86,21 @@ $("#SubmitButton").click(function (){
         }); 
     return false;
 }); 
+
+
+$("#email").blur(function(){
+    
+    checkAvailability("MAIL");
+});
+$("#uname").blur(function(){
+    
+    checkAvailability("USERNAME");
+});
+
+
 function checkAvailability(val) {
     var option="";
-    if(val==='USERNAME'){
+    if(val==="USERNAME"){
        option=$("#uname").val(); 
     }else if(val==="MAIL"){
         option=$('#email').val();
@@ -107,11 +119,12 @@ function checkAvailability(val) {
                     $('#uname').css("color","red");
                     $("#umassage").html("Username not Available").css("color","red");
                 }else if(option==="Username available"){
+                    
                     $("#uname").css("border-color","green");
                     $('#uname').css("color","green");
                     $("#umassage").html("Username available").css("color",'green');
-                    }   
-                else if(option==="Email not available"){
+                    
+                    }else if(option==="Email not available"){
                     $("#email").css("border-color","red");
                     $("#email").css("color","red");
                     $("#emassage").css("color","red").html("Email not available");
@@ -154,7 +167,6 @@ $("#loginbtn").click(function (){
         success :function (data){
             
             data=$.trim(data);
-            alert(data);
             if( data==="SUCCESS" ){
                 
                 document.location="profile.jsp";

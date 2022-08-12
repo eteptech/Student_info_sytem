@@ -5,6 +5,7 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <%
+    AccountController.protectedPage(true, users);
     if(request.getMethod().equals("POST")){
         out.println(request.getParameter("COURSES"));
     }

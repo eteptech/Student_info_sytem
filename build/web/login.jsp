@@ -26,7 +26,7 @@
     <%
         if(request.getParameter("ID")!=null){
             if(request.getParameter("ID").equals("101")){
-              message="You are not authorized to visit this page!";
+              message="please login!";
         }else if(request.getParameter("ID").equals("111")){
             message=request.getParameter("user")+" Successfully logged out";
         }

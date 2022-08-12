@@ -27,7 +27,7 @@ error codes
         if(request.getParameter("VALUE").equals("USERNAME")){
         users.setUname(request.getParameter("OPTION"));
         ac.checkUsernameEmail(users);
-       out.println(request.getParameter("VALUE"));
+        //out.println(request.getParameter("VALUE"));
         }else if(request.getParameter("VALUE").equals("MAIL")){
             users.setEmail(request.getParameter("OPTION"));
             ac.checkEmail(users);

@@ -22,7 +22,7 @@ import org.apache.commons.io.FilenameUtils;
  * @author era
  */
 public class FileController extends AccountController{
-    private static String uploadDir="C:\\Users\\Premierhub_IT\\Documents\\NetBeansProjects\\studeninfo\\web\\images";
+    private static String uploadDir="C:\\Users\\Premierhub_IT\\Documents\\NetBeansProjects\\ugbemtech\\web\\images\\coverPics\\";
     public void saveCover(UserModel users) throws Exception{
       if (this.valid(users)){
           
@@ -30,8 +30,13 @@ public class FileController extends AccountController{
         
     }
     private  void upLoad(String fileName,FileItem item,UserModel users) throws Exception{
-        String filePath=uploadDir + loggedInUser(users)+".jpg";
-        item.write(new File(filePath));   
+       
+        
+            
+            String filePath=uploadDir + loggedInUser(users)+"_profilepic.jpg";
+            item.write(new File(filePath));
+       
+         
         
     }
 
@@ -55,17 +60,21 @@ public class FileController extends AccountController{
                 Iterator itr = items.iterator();
                 if(itr.hasNext()){
                     FileItem item = (FileItem) itr.next();
-                        if(item.getFieldName().equals("coverpic")){
-                            if(!item.getName().equals("")){
-                                String itemName = item.getName();
-                                String fileName = FilenameUtils.getName(itemName).toLowerCase();
-                                if(fileName.endsWith(".png")||fileName.endsWith(".jpg") || fileName.endsWith(".png")){
-                                    if(item.getSize()<=500000){
-                                        if(users.getRequest().getServletContext().getMimeType(itemName).equals("image/jpg") || 
+                    if(item.getFieldName().equals("cover")){
+                        item.setFieldName("cover");
+                    }
+                        if(!item.getName().equals("")){
+                            String itemName = item.getName();
+                            String fileName = FilenameUtils.getName(itemName).toLowerCase();
+                            if(fileName.endsWith(".png")||fileName.endsWith(".jpg")||fileName.endsWith(".jpeg") || fileName.endsWith(".gif")){
+                                if(item.getSize()<=500000){
+                                    if(users.getRequest().getServletContext().getMimeType(itemName).equals("image/jpg") || 
+                                        users.getRequest().getServletContext().getMimeType(itemName).equals("image/jpeg")||
+                                        users.getRequest().getServletContext().getMimeType(itemName).equals("image/jif")||
                                             users.getRequest().getServletContext().getMimeType(itemName).equals("image/png")){
-                                                this.upLoad(fileName, item, users);
-                                                    users.setMessage(fileName+" Uploaded sucessfully!<br/><br/>");
-                                                    return true;
+                                            this.upLoad(fileName, item, users);
+                                            users.setMessage(fileName+" Uploaded sucessfully!<br/><br/>");
+                                            return true;
                                         }else{
                                             users.setMessage("File extension not supported");
                                             return false;
@@ -82,8 +91,7 @@ public class FileController extends AccountController{
                                 users.setMessage("Please select a file to upload"); 
                                 return false;
                             } 
-                    } else{
-                }  
+                    } else{ 
             }
         }catch(Exception e){
             File coverimage= new File(users.getRequest().getServletContext().getRealPath("images/coverPics/"+AccountController.getLoggInUser(users)+".jpg"));
@@ -95,7 +103,7 @@ public class FileController extends AccountController{
                     item.write(new File(filePath.replace(uname, uname)));
                     return true;
                 }
-                users.setMessage(e.getMessage());
+                users.setMessage("Please upload the correct file!");
             return false;
         }
         return true;

@@ -1,8 +1,8 @@
 <%@include file="inc/header.jsp" %>
 <article id="registerArticle">
     <hgroup>
-	<h1>Register for test</h1>
-	<h5>Register for test and all other features</h5>
+	<h1>New Registration</h1>
+	<h5>Register for Your Test and Quize</h5>
     </hgroup>
     <div id="formDiv">
 	<progress id="progressBar"></progress>
@@ -17,7 +17,7 @@
                                  placeholder="Enter your last name"/>
            <p><em id="umassage"></em></p>
 	   <span>*</span> <input type="text" id="uname"
-		   placeholder="Choose a user name."  onblur="javascript:checkAvailability('USERNAME');"/>
+		   placeholder="Choose a user name."/>
 	    <br/>
 	    
 	    <span>*</span><input type="password"  id="psswd"
@@ -29,7 +29,7 @@
 	    <br/>
             <p><em id="emassage"></em></p>
 	 <span>*</span>   <input type="text"  id="email"
-		 placeholder="Enter your email address" onblur="javascript:checkAvailability('MAIL');"/>
+		 placeholder="Enter your email address" />
 	    
 	 <span>*</span>  <input type="text"   id="mobilenumber" 
 		   placeholder="Enter phone number"/>
