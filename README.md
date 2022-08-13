@@ -1,5 +1,11 @@
-This is a student management application where by student can add/update/read/news , 
-register for exams and get assignment online from my the course lecturer.
-NOTE:this program need depencies to run and make sure you are netbeans ide,
-with apache tomcat 8.5 or glass-fish server and jboss server from redhat.
+#Introduction
+Java full stack apllication: With this application, student would be able to communicate with the course lecturer and get/submit assignment
+#Design Pattern
+The application follow MVC design pattern , it has common header and footer with the help jsp pages, plane java classes are use to wite database query, MD5/SHA1 hashing algorithm are used to store user password to the database and regex are drawn to match user input for passwords and username, with a user friendly error message.
+#To run this Application, you would need the following.
+1 Install JRE.
+
+2 Install SDK. 
+3 Install MYSQL database.
+NOTE: for easy excution of this app, use netbeans IDE to clone this repo and run the app with less stress ******************** 
 #More feature to be added
