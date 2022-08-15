@@ -1,7 +1,11 @@
 #Introduction
-Java full stack apllication: With this application, student would be able to communicate with the course lecturer and get/submit assignment
+Java full stack apllication: With this application, 
+student would be able to communicate with the course 
+lecturer and get/submit assignment
 #Design Pattern
-The application follow MVC design pattern , it has common header and footer with the help jsp pages, plane java classes are use to wite database query, MD5/SHA1 hashing algorithm are used to store user password to the database and regex are drawn to match user input for passwords and username, with a user friendly error message.
+The application follow MVC design pattern , it has common header and footer with the help jsp pages,
+plane java classes are use to wite database query, MD5/SHA1 hashing algorithm are used to store user password to 
+the database and regex are drawn to match user input for passwords and username, with a user friendly error message.
 #To run this Application, you would need the following.
 1 Install JRE.
 
